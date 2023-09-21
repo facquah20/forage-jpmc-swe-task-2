@@ -1,0 +1,423 @@
+From 3e3b5f59b27ecb14f3b0e2e8cee836e7732e3133 Mon Sep 17 00:00:00 2001
+From: Frank Acquah <acquahfrank25@gmail.com>
+Date: Thu, 21 Sep 2023 14:59:49 +0000
+Subject: [PATCH] getServerData function was updated and the App component was
+ updated into a functional component
+
+---
+ datafeed/server3.py |   2 +-
+ package-lock.json   |  96 ++++---------------------
+ package.json        |   7 +-
+ src/App.tsx         | 172 ++++++++++++++++++++++++++++----------------
+ 4 files changed, 129 insertions(+), 148 deletions(-)
+
+diff --git a/datafeed/server3.py b/datafeed/server3.py
+index 68f4659..8bb5b90 100644
+--- a/datafeed/server3.py
++++ b/datafeed/server3.py
+@@ -339,4 +339,4 @@ if __name__ == '__main__':
+     if not os.path.isfile('test.csv'):
+         print("No data found, generating...")
+         generate_csv()
+-    run(App())
++    run(App)
+diff --git a/package-lock.json b/package-lock.json
+index 21b4315..70b1457 100644
+--- a/package-lock.json
++++ b/package-lock.json
+@@ -14,12 +14,10 @@
+         "@finos/perspective-viewer-datagrid": "^1.6.2",
+         "@types/jest": "^23.3.13",
+         "@types/node": "^10.12.19",
+-        "@types/react": "^16.9.0",
+-        "@types/react-dom": "^16.0.11",
++        "@types/react": "^16.14.46",
++        "@types/react-dom": "^16.9.19",
+         "bootstrap": "^4.2.1",
+         "puppeteer": "^1.19.0",
+-        "react": "^16.9.0",
+-        "react-dom": "^16.9.0",
+         "react-scripts": "2.1.3"
+       },
+       "devDependencies": {
+@@ -2309,9 +2307,9 @@
+       "integrity": "sha512-L28j2FcJfSZOnL1WBjDYp2vUHCeIFlyYI/53EwD/rKUBQ7MtUUfbQWiyKJGpcnv4/WgrhWsFKrcPstcAt/J0tQ=="
+     },
+     "node_modules/@types/react": {
+-      "version": "16.14.29",
+-      "resolved": "https://registry.npmjs.org/@types/react/-/react-16.14.29.tgz",
+-      "integrity": "sha512-I5IwEaefGZbpmmK1J7zHwZe3JkGxcRkc5WJUDWmNySVVovueViRTEUWV7spTvpe96l3nbKD/K6+GxoN69CYb/w==",
++      "version": "16.14.46",
++      "resolved": "https://registry.npmjs.org/@types/react/-/react-16.14.46.tgz",
++      "integrity": "sha512-Am4pyXMrr6cWWw/TN3oqHtEZl0j+G6Up/O8m65+xF/3ZaUgkv1GAtTPWw4yNRmH0HJXmur6xKCKoMo3rBGynuw==",
+       "dependencies": {
+         "@types/prop-types": "*",
+         "@types/scheduler": "*",
+@@ -2319,9 +2317,9 @@
+       }
+     },
+     "node_modules/@types/react-dom": {
+-      "version": "16.9.16",
+-      "resolved": "https://registry.npmjs.org/@types/react-dom/-/react-dom-16.9.16.tgz",
+-      "integrity": "sha512-Oqc0RY4fggGA3ltEgyPLc3IV9T73IGoWjkONbsyJ3ZBn+UPPCYpU2ec0i3cEbJuEdZtkqcCF2l1zf2pBdgUGSg==",
++      "version": "16.9.19",
++      "resolved": "https://registry.npmjs.org/@types/react-dom/-/react-dom-16.9.19.tgz",
++      "integrity": "sha512-xC8D280Bf6p0zguJ8g62jcEOKZiUbx9sIe6O3tT/lKfR87A7A6g65q13z6D5QUMIa/6yFPkNhqjF5z/VVZEYqQ==",
+       "dependencies": {
+         "@types/react": "^16"
+       }
+@@ -15755,19 +15753,6 @@
+         "node": ">= 0.8"
+       }
+     },
+-    "node_modules/react": {
+-      "version": "16.14.0",
+-      "resolved": "https://registry.npmjs.org/react/-/react-16.14.0.tgz",
+-      "integrity": "sha512-0X2CImDkJGApiAlcf0ODKIneSwBPhqJawOa5wCtKbu7ZECrmS26NvtSILynQ66cgkT/RJ4LidJOc3bUESwmU8g==",
+-      "dependencies": {
+-        "loose-envify": "^1.1.0",
+-        "object-assign": "^4.1.1",
+-        "prop-types": "^15.6.2"
+-      },
+-      "engines": {
+-        "node": ">=0.10.0"
+-      }
+-    },
+     "node_modules/react-app-polyfill": {
+       "version": "0.2.2",
+       "resolved": "https://registry.npmjs.org/react-app-polyfill/-/react-app-polyfill-0.2.2.tgz",
+@@ -15968,20 +15953,6 @@
+         "node": ">=6"
+       }
+     },
+-    "node_modules/react-dom": {
+-      "version": "16.14.0",
+-      "resolved": "https://registry.npmjs.org/react-dom/-/react-dom-16.14.0.tgz",
+-      "integrity": "sha512-1gCeQXDLoIqMgqD3IO2Ah9bnf0w9kzhwN5q4FGnHZ67hBm9yePzB5JJAIQCc8x3pFnNlwFq4RidZggNAAkzWWw==",
+-      "dependencies": {
+-        "loose-envify": "^1.1.0",
+-        "object-assign": "^4.1.1",
+-        "prop-types": "^15.6.2",
+-        "scheduler": "^0.19.1"
+-      },
+-      "peerDependencies": {
+-        "react": "^16.14.0"
+-      }
+-    },
+     "node_modules/react-error-overlay": {
+       "version": "5.1.6",
+       "resolved": "https://registry.npmjs.org/react-error-overlay/-/react-error-overlay-5.1.6.tgz",
+@@ -16863,15 +16834,6 @@
+         "node": ">=v12.22.7"
+       }
+     },
+-    "node_modules/scheduler": {
+-      "version": "0.19.1",
+-      "resolved": "https://registry.npmjs.org/scheduler/-/scheduler-0.19.1.tgz",
+-      "integrity": "sha512-n/zwRWRYSUj0/3g/otKDRPMh6qv2SYMWNq85IEa8iZyAv8od9zDYpGSnpBEjNgcMNq6Scbu5KfIPxNF72R/2EA==",
+-      "dependencies": {
+-        "loose-envify": "^1.1.0",
+-        "object-assign": "^4.1.1"
+-      }
+-    },
+     "node_modules/schema-utils": {
+       "version": "1.0.0",
+       "resolved": "https://registry.npmjs.org/schema-utils/-/schema-utils-1.0.0.tgz",
+@@ -21951,9 +21913,9 @@
+       "integrity": "sha512-L28j2FcJfSZOnL1WBjDYp2vUHCeIFlyYI/53EwD/rKUBQ7MtUUfbQWiyKJGpcnv4/WgrhWsFKrcPstcAt/J0tQ=="
+     },
+     "@types/react": {
+-      "version": "16.14.29",
+-      "resolved": "https://registry.npmjs.org/@types/react/-/react-16.14.29.tgz",
+-      "integrity": "sha512-I5IwEaefGZbpmmK1J7zHwZe3JkGxcRkc5WJUDWmNySVVovueViRTEUWV7spTvpe96l3nbKD/K6+GxoN69CYb/w==",
++      "version": "16.14.46",
++      "resolved": "https://registry.npmjs.org/@types/react/-/react-16.14.46.tgz",
++      "integrity": "sha512-Am4pyXMrr6cWWw/TN3oqHtEZl0j+G6Up/O8m65+xF/3ZaUgkv1GAtTPWw4yNRmH0HJXmur6xKCKoMo3rBGynuw==",
+       "requires": {
+         "@types/prop-types": "*",
+         "@types/scheduler": "*",
+@@ -21961,9 +21923,9 @@
+       }
+     },
+     "@types/react-dom": {
+-      "version": "16.9.16",
+-      "resolved": "https://registry.npmjs.org/@types/react-dom/-/react-dom-16.9.16.tgz",
+-      "integrity": "sha512-Oqc0RY4fggGA3ltEgyPLc3IV9T73IGoWjkONbsyJ3ZBn+UPPCYpU2ec0i3cEbJuEdZtkqcCF2l1zf2pBdgUGSg==",
++      "version": "16.9.19",
++      "resolved": "https://registry.npmjs.org/@types/react-dom/-/react-dom-16.9.19.tgz",
++      "integrity": "sha512-xC8D280Bf6p0zguJ8g62jcEOKZiUbx9sIe6O3tT/lKfR87A7A6g65q13z6D5QUMIa/6yFPkNhqjF5z/VVZEYqQ==",
+       "requires": {
+         "@types/react": "^16"
+       }
+@@ -32475,16 +32437,6 @@
+         }
+       }
+     },
+-    "react": {
+-      "version": "16.14.0",
+-      "resolved": "https://registry.npmjs.org/react/-/react-16.14.0.tgz",
+-      "integrity": "sha512-0X2CImDkJGApiAlcf0ODKIneSwBPhqJawOa5wCtKbu7ZECrmS26NvtSILynQ66cgkT/RJ4LidJOc3bUESwmU8g==",
+-      "requires": {
+-        "loose-envify": "^1.1.0",
+-        "object-assign": "^4.1.1",
+-        "prop-types": "^15.6.2"
+-      }
+-    },
+     "react-app-polyfill": {
+       "version": "0.2.2",
+       "resolved": "https://registry.npmjs.org/react-app-polyfill/-/react-app-polyfill-0.2.2.tgz",
+@@ -32646,17 +32598,6 @@
+         }
+       }
+     },
+-    "react-dom": {
+-      "version": "16.14.0",
+-      "resolved": "https://registry.npmjs.org/react-dom/-/react-dom-16.14.0.tgz",
+-      "integrity": "sha512-1gCeQXDLoIqMgqD3IO2Ah9bnf0w9kzhwN5q4FGnHZ67hBm9yePzB5JJAIQCc8x3pFnNlwFq4RidZggNAAkzWWw==",
+-      "requires": {
+-        "loose-envify": "^1.1.0",
+-        "object-assign": "^4.1.1",
+-        "prop-types": "^15.6.2",
+-        "scheduler": "^0.19.1"
+-      }
+-    },
+     "react-error-overlay": {
+       "version": "5.1.6",
+       "resolved": "https://registry.npmjs.org/react-error-overlay/-/react-error-overlay-5.1.6.tgz",
+@@ -33355,15 +33296,6 @@
+         "xmlchars": "^2.2.0"
+       }
+     },
+-    "scheduler": {
+-      "version": "0.19.1",
+-      "resolved": "https://registry.npmjs.org/scheduler/-/scheduler-0.19.1.tgz",
+-      "integrity": "sha512-n/zwRWRYSUj0/3g/otKDRPMh6qv2SYMWNq85IEa8iZyAv8od9zDYpGSnpBEjNgcMNq6Scbu5KfIPxNF72R/2EA==",
+-      "requires": {
+-        "loose-envify": "^1.1.0",
+-        "object-assign": "^4.1.1"
+-      }
+-    },
+     "schema-utils": {
+       "version": "1.0.0",
+       "resolved": "https://registry.npmjs.org/schema-utils/-/schema-utils-1.0.0.tgz",
+diff --git a/package.json b/package.json
+index ca234e9..32492d9 100644
+--- a/package.json
++++ b/package.json
+@@ -1,6 +1,7 @@
+ {
+   "name": "bank-merge-co-task-2",
+   "version": "0.1.0",
++  "main": "index.tsx",
+   "private": true,
+   "dependencies": {
+     "@finos/perspective": "^1.6.2",
+@@ -9,12 +10,10 @@
+     "@finos/perspective-viewer-datagrid": "^1.6.2",
+     "@types/jest": "^23.3.13",
+     "@types/node": "^10.12.19",
+-    "@types/react": "^16.9.0",
+-    "@types/react-dom": "^16.0.11",
++    "@types/react": "^16.14.46",
++    "@types/react-dom": "^16.9.19",
+     "bootstrap": "^4.2.1",
+     "puppeteer": "^1.19.0",
+-    "react": "^16.9.0",
+-    "react-dom": "^16.9.0",
+     "react-scripts": "2.1.3"
+   },
+   "scripts": {
+diff --git a/src/App.tsx b/src/App.tsx
+index 0728518..0548269 100755
+--- a/src/App.tsx
++++ b/src/App.tsx
+@@ -1,74 +1,124 @@
+-import React, { Component } from 'react';
+-import DataStreamer, { ServerRespond } from './DataStreamer';
+-import Graph from './Graph';
++// import React from 'react';
++// import DataStreamer, { ServerRespond } from './DataStreamer';
++// import Graph from './Graph';
++// import './App.css';
++
++import { FC, useEffect, useState } from "react";
++import DataStreamer,{ServerRespond} from "./DataStreamer";
++import Graph from "./Graph";
+ import './App.css';
+ 
+-/**
+- * State declaration for <App />
+- */
+-interface IState {
+-  data: ServerRespond[],
+-}
++// /**
++//  * State declaration for <App />
++//  */
++// interface IState {
++//   data: ServerRespond[],
++// }
+ 
+-/**
+- * The parent element of the react app.
+- * It renders title, button and Graph react element.
+- */
+-class App extends Component<{}, IState> {
+-  constructor(props: {}) {
+-    super(props);
+-
+-    this.state = {
+-      // data saves the server responds.
+-      // We use this state to parse data down to the child element (Graph) as element property
+-      data: [],
+-    };
+-  }
+ 
+-  /**
+-   * Render Graph react component with state.data parse as property data
+-   */
+-  renderGraph() {
+-    return (<Graph data={this.state.data}/>)
+-  }
++// /**
++//  * The parent element of the react app.
++//  * It renders title, button and Graph react element.
++//  */
++// class App extends Component<{}, IState> {
++//   constructor(props: {}) {
++//     super(props);
++
++//     this.state = {
++//       // data saves the server responds.
++//       // We use this state to parse data down to the child element (Graph) as element property
++//       data: [],
++//     };
++//   }
++
++//   /**
++//    * Render Graph react component with state.data parse as property data
++//    */
++//   renderGraph() {
++//     return (<Graph data={this.state.data}/>)
++//   }
++
++//   /**
++//    * Get new data from server and update the state with the new data
++//    */
++//   getDataFromServer() {
++//     DataStreamer.getData((serverResponds: ServerRespond[]) => {
++//       // Update the state by creating a new array of data that consists of
++//       // Previous data in the state and the new data from server
++//       this.setState({ data: [...this.state.data, ...serverResponds] });
++//     });
++//   }
++
++//   /**
++//    * Render the App react component
++//    */
++//   render() {
++//     return (
++//       <div className="App">
++//         <header className="App-header">
++//           Bank & Merge Co Task 2
++//         </header>
++//         <div className="App-content">
++//           <button className="btn btn-primary Stream-button"
++//             // when button is click, our react app tries to request
++//             // new data from the server.
++//             // As part of your task, update the getDataFromServer() function
++//             // to keep requesting the data every 100ms until the app is closed
++//             // or the server does not return anymore data.
++//             onClick={() => {this.getDataFromServer()}}>
++//             Start Streaming Data
++//           </button>
++//           <div className="Graph">
++//             {this.renderGraph()}
++//           </div>
++//         </div>
++//       </div>
++//     )
++//   }
++// }
++
++// export default App;
++ 
+ 
+-  /**
+-   * Get new data from server and update the state with the new data
+-   */
+-  getDataFromServer() {
+-    DataStreamer.getData((serverResponds: ServerRespond[]) => {
+-      // Update the state by creating a new array of data that consists of
+-      // Previous data in the state and the new data from server
+-      this.setState({ data: [...this.state.data, ...serverResponds] });
++
++const App:FC<{}>=()=>{
++  type responseType = ServerRespond[];
++  const [data,setData] = useState<responseType>([]);
++  
++  let isButtonClicked = false;
++
++  const getDataFromServer =()=>{
++    DataStreamer.getData((ServerResponds:ServerRespond[])=>{
++      setData([...data,...ServerResponds])
+     });
++    isButtonClicked = true;
++
+   }
++/** The app continues to make request as long as the button is clicked */
++  useEffect(()=>{
++    isButtonClicked?getDataFromServer():()=>{};
++
++  },[data])
+ 
+-  /**
+-   * Render the App react component
+-   */
+-  render() {
+-    return (
+-      <div className="App">
+-        <header className="App-header">
+-          Bank & Merge Co Task 2
+-        </header>
+-        <div className="App-content">
+-          <button className="btn btn-primary Stream-button"
+-            // when button is click, our react app tries to request
+-            // new data from the server.
+-            // As part of your task, update the getDataFromServer() function
+-            // to keep requesting the data every 100ms until the app is closed
+-            // or the server does not return anymore data.
+-            onClick={() => {this.getDataFromServer()}}>
+-            Start Streaming Data
+-          </button>
+-          <div className="Graph">
+-            {this.renderGraph()}
+-          </div>
++  return (
++    <div className="App">
++      <header className="App-header">
++        Bank and Merge Co task 2
++      </header>
++      <div className="App-content">
++        <button  className="btn btn-primary Stream-button" onClick={()=>getDataFromServer()}>
++          Start Streaming Data
++        </button>
++        <div className="Graph">
++          <Graph data={data}/>
+         </div>
++
+       </div>
+-    )
+-  }
++
++    </div>
++
++  );
+ }
+ 
+ export default App;
++  
+\ No newline at end of file
+-- 
+2.39.2.windows.1
+
